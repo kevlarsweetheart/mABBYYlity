@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">EasyDocs</string>
+    <string name="new_doc_text">Add new document</string>
+    <string name="file_name_text">File name</string>
+    <string name="file_type_text">File type</string>
+    <string name="path_to_file_text">Path to file</string>
+    <string name="add_photo_text">Add photo</string>
+    <string name="process_text">Process</string>
+    <string name="rename_text">Rename</string>
+    <string name="delete_text">Delete</string>
+    <string name="kek_text">...</string>
+</resources>
