@@ -86,16 +86,16 @@ class CloudOCR:
         for element in elements[0]:
             response.append(dict(list(zip(list(element.keys()), list(element.values())))))
 
-        return response
+        return response[0]
 
     def wait_for_task(self, task, delay_between_status_check=1, timeout=300):
-        taskId = task['id']
+        taskId = task.get('id')
         for i in range(timeout):
             task = self.getTaskStatus(task_id=taskId)
-            if task['status'] == 'InProgress' or task['status'] == 'Queued':
+            if task.get('status') == 'InProgress' or task.get('status') == 'Queued':
                 delay_between_status_check = int(task['estimatedProcessingTime'])
                 time.sleep(delay_between_status_check)
-            elif task['status'] == 'NotEnoughCredits':
+            elif task.get('status') == 'NotEnoughCredits':
                 raise Exception('NotEnoughCredits')
             else:
                 return task
@@ -103,5 +103,5 @@ class CloudOCR:
 
 
     def get_result_url(self, task):
-        result = self.wait_for_task(task)
-        return result[0].get('resultUrl')
+        result = self.wait_for_task(task=task, delay_between_status_check=1, timeout=300)
+        return result.get('resultUrl')
